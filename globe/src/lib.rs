@@ -140,7 +140,7 @@ impl Globe {
                 let mut index =
                     ((1.0 - luminance) * day as Float + luminance * day as Float) as usize;
                 // dirty fix for index ending up too large
-                if index > palette.len() {
+                if index >= palette.len() {
                     index = palette.len() - 1;
                 }
                 canvas.draw_point(xi, yi, palette[index]);
