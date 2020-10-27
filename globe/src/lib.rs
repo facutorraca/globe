@@ -137,7 +137,12 @@ impl Globe {
                 //let night = findIndex(self.texture_night[earthY][earthX], &palette);
                 //let index = ((1.0 - luminance) * night as Float + luminance * day as Float) as usize;
 
-                let index = ((1.0 - luminance) * day as Float + luminance * day as Float) as usize;
+                let mut index =
+                    ((1.0 - luminance) * day as Float + luminance * day as Float) as usize;
+                // dirty fix for index ending up too large
+                if index > palette.len() {
+                    index = palette.len() - 1;
+                }
                 canvas.draw_point(xi, yi, palette[index]);
             }
         }
